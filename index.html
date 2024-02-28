@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="icons/logo_butt.svg" type = "image/x-icon">
+    <link rel="stylesheet" href="/reset.css">
+    <link rel="stylesheet" href="/style.css">
+    <title>ToDoList</title>
+</head>
+<body>
+    <main>
+        <button class ="clear-tasks">clean</button> 
+        <div class="container">
+            <div class = "add-task-block">
+                <div class="add-task-selector">
+                    <label for="priority-select">Приоритет:</label>
+                    <select name="priority" id="priority-select">                   
+                        <option value="a-low" class = "task-priority">низкий</option>
+                        <option value="b-middle" class = "task-priority" selected="selected">средний</option>
+                        <option value="c-high" class = "task-priority">высокий</option>
+                    </select>
+                </div>
+                <div class="add-task-input">
+                    <label for="task-input-text">Текст задачи:</label>
+                    <input type="text" id="task-input-text" name="name" class="text-input" placeholder="Введите текст..."/>
+                    <!-- <textarea rows="1" placeholder="Your name..." id="textName" class="text-input"></textarea> -->
+                </div>
+                <div class="add-task-button-wrapper">
+                    <div class="add-task-button">
+                        <button class ="add-task">Добавить задачу</button>
+                    </div>
+                </div>            
+            </div>
+            <div class = "filter-task-block">
+                <div class = "filter-task-block-1">
+                    <div class="filter-task-selector">
+                        <label for="priority-select-filter">Фильтр по приоритету:</label>
+                        <select name="priority" id="priority-select-filter">
+                            <option value="any">любой</option>                  
+                            <option value="a-low">низкий</option>
+                            <option value="b-middle">средний</option>
+                            <option value="c-high">высокий</option>
+                        </select>
+                    </div>
+                    <legend>Фильтр по статусу:</legend>
+                    <div>
+                        <label for="active">активные</label>
+                        <input type="checkbox" id="active" name="checkbox-active" class = "filter-task-checkbox" checked />                      
+                    </div>
+                    <div>
+                        <label for="cancel">отменённые</label>
+                        <input type="checkbox" id="cancel" name="checkbox-canceled" class = "filter-task-checkbox" checked />                      
+                    </div>
+                    <div>
+                        <label for="complited">завершённые</label>
+                        <input type="checkbox" id="complited" name="checkbox-complited" class = "filter-task-checkbox" checked />                        
+                    </div>
+                </div>
+                <div class = "filter-task-block-2">
+                    Сортировка по дате:
+                    <div>
+                        <label for="stateInputDate" class="arrows">дата создания</label>
+                        <input type="checkbox" id="stateInputDate" name="checkbox-date" >                                                 
+                    </div>
+                    Сортировка по приоритету:
+                    <div>
+                        <label for="stateInputPriority" class="arrows">приоритет</label>
+                        <input type="checkbox" id="stateInputPriority" name="checkbox-priority">                                         
+                    </div>
+                </div> 
+            </div>
+            <div class = "task-listing-block"
+            ></div>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>
