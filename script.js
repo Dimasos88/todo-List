@@ -108,51 +108,52 @@ taskPriorityFilter.addEventListener("change", function() {
 });
 
 
-
 //Фильтруем массив заданий по статусу
-taskStatusActive.addEventListener('change', function() {
-    if (this.checked == false) {
-        filterTasksList = tasksList.filter((item) => item['status'] !== 'active');
-    } 
+document.querySelector('.filter-task-block-1').addEventListener('change', function() {
+    let arr1 = [];
+    let arr2 = [];
+    let arr3 = [];
+
+    if (taskStatusActive.checked) {
+        arr1 = tasksList.filter((item) => item['status'] === 'active');
+    } else if (!taskStatusActive.checked) {
+        arr1 = [];
+    }
+
+    if (taskStatusCanceled.checked) {
+        arr3 = tasksList.filter((item) => item['status'] === 'canceled');
+    } else if (!taskStatusCanceled.checked) {
+        arr3 = [];
+    }
+
+    if (taskStatusComplited.checked) {
+        arr2 = tasksList.filter((item) => item['status'] === 'complited');
+    } else if (!taskStatusComplited.checked) {
+        arr2 = [];
+    }
+
+    filterTasksList = [].concat(arr2, arr1, arr3);
     showTasks(filterTasksList);
 });
 
-taskStatusComplited.addEventListener('change', function() {
-    if (this.checked == false) {
-        filterTasksList = tasksList.filter((item) => item['status'] !== 'complited');
-    } 
-    showTasks(filterTasksList);
-});
-
-taskStatusCanceled.addEventListener('change', function() {
-    if (this.checked == false) {
-        filterTasksList = tasksList.filter((item) => item['status'] !== 'canceled');
-    } 
-    showTasks(filterTasksList);
-});
 
 
 //Сортировка по дате
 dateSort.addEventListener('change', function() {
-    //filterTasksList = tasksList;
-    if  (this.checked) {
-            sortListUp(filterTasksList, 'date');
-        //localStorage.setItem('taskListingBlock', JSON.stringify(tasksList));
-    } 
-    if  (!this.checked) {
-            sortListDown(filterTasksList, 'date');
-        //localStorage.setItem('taskListingBlock', JSON.stringify(tasksList));
-    }
+if  (dateSort.checked) {
+        sortListUp(filterTasksList, 'date');
+} 
+if  (!dateSort.checked) {
+        sortListDown(filterTasksList, 'date');
+}
 });
 
 //Сортировка по приоритету
 prioritySort.addEventListener('change', function() {
     if  (this.checked) {
         sortListUp(tasksList, 'priority');
-        //localStorage.setItem('taskListingBlock', JSON.stringify(tasksList));
     } else {
-        sortListDown(tasksList, 'priority');
-        //localStorage.setItem('taskListingBlock', JSON.stringify(tasksList)); 
+        sortListDown(tasksList, 'priority'); 
     }
 });
 
