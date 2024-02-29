@@ -98,9 +98,10 @@ function showTasks(List) {
 // Фильтруем массив заданий по приоритету
 
 taskPriorityFilter.addEventListener("change", function() {
-    
+    filterTasksList = tasksList;
     if (this.value != 'any') {
         filterTasksList = tasksList.filter((item) => item.priority == this.value);
+        console.log(filterTasksList);
     } else {
         filterTasksList = tasksList;
     }
@@ -109,7 +110,7 @@ taskPriorityFilter.addEventListener("change", function() {
 
 
 //Фильтруем массив заданий по статусу
-document.querySelector('.filter-task-block-1').addEventListener('change', function() {
+document.querySelector('.status-filter-wrapper').addEventListener('change', function() {
     let arr1 = [];
     let arr2 = [];
     let arr3 = [];
