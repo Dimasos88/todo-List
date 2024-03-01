@@ -43,31 +43,42 @@
                             <option value="c-high">высокий</option>
                         </select>
                     </div>
-                    <legend>Фильтр по статусу:</legend>
-                    <div>
-                        <label for="active">активные</label>
-                        <input type="checkbox" id="active" name="checkbox-active" class = "filter-task-checkbox" checked />                      
-                    </div>
-                    <div>
-                        <label for="cancel">отменённые</label>
-                        <input type="checkbox" id="cancel" name="checkbox-canceled" class = "filter-task-checkbox" checked />                      
-                    </div>
-                    <div>
-                        <label for="complited">завершённые</label>
-                        <input type="checkbox" id="complited" name="checkbox-complited" class = "filter-task-checkbox" checked />                        
+                    <div class="status-filter-wrapper">
+                        <legend>Фильтр по статусу:</legend>
+                        <div>
+                            <label for="active">активные</label>
+                            <input type="checkbox" id="active" name="checkbox-active" class = "filter-task-checkbox" checked />                      
+                        </div>
+                        <div>
+                            <label for="cancel">отменённые</label>
+                            <input type="checkbox" id="cancel" name="checkbox-canceled" class = "filter-task-checkbox" checked />                      
+                        </div>
+                        <div>
+                            <label for="complited">завершённые</label>
+                            <input type="checkbox" id="complited" name="checkbox-complited" class = "filter-task-checkbox" checked />                        
+                        </div>
                     </div>
                 </div>
                 <div class = "filter-task-block-2">
                     Сортировка по дате:
-                    <div>
-                        <label for="stateInputDate" class="arrows">дата создания</label>
-                        <input type="checkbox" id="stateInputDate" name="checkbox-date" >                                                 
+                    <div class = "sort-checkbox-wrapper">
+                        <label for="stateInputDate" class="arrows">                        
+                            <input type="checkbox" id="stateInputDate" name="checkbox-date" class = "real-checkbox"> 
+                            <span class="custom-checkbox"></span>                       
+                        </label>                                                
                     </div>
                     Сортировка по приоритету:
-                    <div>
-                        <label for="stateInputPriority" class="arrows">приоритет</label>
-                        <input type="checkbox" id="stateInputPriority" name="checkbox-priority">                                         
+                    <div class = "sort-checkbox-wrapper sort-checkbox-wrapper-2">
+                        <label for="stateInputPriority" class="arrows">
+                            <input type="checkbox" id="stateInputPriority" name="checkbox-priority" class = "real-checkbox-pr">                            
+                            <span class="custom-checkbox"></span>                         
+                        </label>                                        
                     </div>
+                </div>
+                <div class="search-task-input">
+                    <label for="task-search-text" class = "search-task-title">Поиск задачи по тексту:</label>
+                    <input type="text" id="task-search-text" name="name" class="text-search" placeholder = "Начните вводить текст задачи..."/>
+                    <!-- <textarea rows="1" placeholder="Your name..." id="textName" class="text-input"></textarea> -->
                 </div> 
             </div>
             <div class = "task-listing-block"

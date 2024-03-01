@@ -1,6 +1,6 @@
-
-
 let taskText = document.querySelector('.text-input');
+let searchText = document.querySelector('.text-search');
+
 let addTaskButton = document.querySelector('.add-task');
 let taskListingBlock = document.querySelector('.task-listing-block');
 
@@ -21,7 +21,6 @@ let filterTasksList = [];
 
 
 //Проверяем локал сторедж шо там есть
-
 if (localStorage.getItem('taskListingBlock')) {
     tasksList = JSON.parse(localStorage.getItem('taskListingBlock'));
     showTasks(tasksList);
@@ -96,7 +95,6 @@ function showTasks(List) {
 }
 
 // Фильтруем массив заданий по приоритету
-
 taskPriorityFilter.addEventListener("change", function() {
     filterTasksList = tasksList;
     if (this.value != 'any') {
@@ -107,7 +105,6 @@ taskPriorityFilter.addEventListener("change", function() {
     }
     showTasks(filterTasksList);
 });
-
 
 //Фильтруем массив заданий по статусу
 document.querySelector('.status-filter-wrapper').addEventListener('change', function() {
@@ -137,24 +134,23 @@ document.querySelector('.status-filter-wrapper').addEventListener('change', func
     showTasks(filterTasksList);
 });
 
-
-
 //Сортировка по дате
 dateSort.addEventListener('change', function() {
-if  (dateSort.checked) {
-        sortListUp(filterTasksList, 'date');
-} 
-if  (!dateSort.checked) {
-        sortListDown(filterTasksList, 'date');
-}
+    if  (dateSort.checked) {
+            sortListUp(filterTasksList, 'date');
+    } 
+    if  (!dateSort.checked) {
+            sortListDown(filterTasksList, 'date');
+    }
 });
 
 //Сортировка по приоритету
 prioritySort.addEventListener('change', function() {
-    if  (this.checked) {
-        sortListUp(tasksList, 'priority');
-    } else {
-        sortListDown(tasksList, 'priority'); 
+    if  (prioritySort.checked) {
+        sortListUp(filterTasksList, 'priority');
+    } 
+    if (!prioritySort.checked) {
+        sortListDown(filterTasksList, 'priority'); 
     }
 });
 
@@ -170,7 +166,6 @@ function sortListDown(arr, prop) {
         a[prop] > b[prop] ? 1 : b[prop] > a[prop] ? -1 : 0));
     showTasks(arr);
 }
-
 
 // Отчистка всех заданий
 clearTasksButton.addEventListener('click', function() {
@@ -195,9 +190,7 @@ function deleteTask(index) {
     }
 }
 
-
 // Изменение статуса заданий
-
 //Повышение статуса
 function statusUp(index) {
     switch(tasksList[index].status) {
@@ -226,3 +219,16 @@ function statusDown(index) {
     localStorage.setItem('taskListingBlock', JSON.stringify(tasksList));
 }
 
+//Поиск по тексту
+searchText.addEventListener('input', function() {
+    let searchTextLength = this.value.length;
+    if (this.value.length > 2) {
+        console.log(searchTextLength);
+        let searchedTasks = filterTasksList.filter((item) => item.text.substr(0, searchTextLength) == this.value);
+        
+        showTasks(searchedTasks);
+    } else {
+        showTasks(filterTasksList);
+    }     
+})
+    

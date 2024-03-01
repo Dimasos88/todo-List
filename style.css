@@ -50,6 +50,18 @@ main {
     flex-direction: column;
 }
 
+.search-task-input {
+    margin: 25px 0 0 0;
+    width: 80%;
+    display: flex;
+    
+}
+
+.search-task-title {
+    width: 29%;
+    display: flex;
+}
+
 #priority-select {
     width: 80%;
     border-radius: 5px;
@@ -63,6 +75,15 @@ main {
 
 .text-input {
     width: 100%;   
+    background-color: #fff;
+    border: #3f3f3f 2px solid;
+    border-radius: 5px;
+    padding: 0 0 0 10px;
+}
+
+.text-search {
+    width: 100%;
+    height: 22px;   
     background-color: #fff;
     border: #3f3f3f 2px solid;
     border-radius: 5px;
@@ -111,9 +132,75 @@ span {
 
 .filter-task-block-1 {
     display: flex;
-    justify-content: space-between;
     margin-bottom: 25px; 
 }
+
+.status-filter-wrapper {
+    display: flex;
+    margin-left: 140px;
+}
+.status-filter-wrapper > div {
+    display: flex;
+    margin-left: 20px;
+}
+
+.sort-checkbox-wrapper {
+    display: flex;
+    flex-direction: row;
+    margin-left: 45px;
+}
+
+.real-checkbox {
+    display: flex;
+    width: 200px;
+    
+    align-items:center;
+}
+
+.real-checkbox::before {
+    content: 'дата создания'  url('/icons/arrow-down-icon-v2.svg');
+    display: flex;
+    align-items:end;
+    justify-content: center;
+    width: 200px;
+    height: 23px;
+    background-color:#ffffff;
+    border: 2px solid #3f3f3f;
+    border-radius: 4px;
+}
+
+.real-checkbox:checked::before {
+    content: 'дата создания' url('/icons/arrow-up-icon-v2.svg');
+    
+}
+
+.real-checkbox-pr::before {
+    content: 'приоритет' url('/icons/arrow-down-icon-v2.svg');
+    display: flex;
+    align-items:end;
+    justify-content: center;
+    width: 200px;
+    height: 23px;
+    background-color:#ffffff;
+    border: 2px solid #3f3f3f;
+    border-radius: 4px;
+    
+}
+
+.real-checkbox-pr:checked::before {
+    content: 'приоритет' url('/icons/arrow-up-icon-v2.svg');
+    
+}
+
+
+/* .custom-checkbox::before {
+    content: url('/icons/arrow-down-icon.svg');
+    display: flex;
+    width: 20px;
+    height: 20px;
+    
+    
+} */
 
 .filter-task-block-2 > div {
     display: flex;
@@ -237,4 +324,6 @@ span {
 .hidden {
     display: none;
 }
+
+
 
