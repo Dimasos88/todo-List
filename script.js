@@ -47,6 +47,7 @@ addTaskButton.addEventListener('click', function() {
             text: taskText.value,
             priority: taskPriority.value,
             status: 'active',
+            state: 'normal',
             date: Number(new Date()),
             showdate: makeDate(),
         };
@@ -66,21 +67,22 @@ function showTasks(List) {
     let showTask = '';
     if (tasksList.length === 0) taskListingBlock.innerHTML = '';
     if (filterTasksList.length === 0) taskListingBlock.innerHTML = '';
-    
+
     List.forEach(function(item, i){
         const style = item.priority === 'a-low' ? 'a-low' : item.priority === 'b-middle' ? 'b-middle' : "c-high";
         const styleText = item.priority === 'a-low' ? 'низкий' : item.priority === 'b-middle' ? 'средний' : "высокий";
         showTask += 
-                `<div class = "task-wrapper ">
+                `<div class = "task-wrapper" >
                     <div class = "task-priority-wrapper">
                         <p class = "${style}-text">${styleText}</p>
                     </div>
                     <div class = "task ${style} ${item.status}"> 
-                        <div class = "task-text-wrapper">
-                            <p class = "task-text" id = "text-task-${i}">${item.text}</p>
+                        <div class = "task-text-wrapper" >
+                            <p class = "task-text state-text-${item.state}  id = "text-task-${i}" onclick = "stateChange(${i})">${item.text}</p>
+                            <div class = "state-${item.state}"><input type="text" id="task-input-redact-${i}" name="name" class="text-input-redact" placeholder = "${tasksList[i].text}" onclick = "textChange(${i})"></div>
                             <div class = "button-staus-task-wrapper">
-                                <button class = "but-hov status-up" onclick = "statusUp(${i})"><img id = "status-up-${i}" src="/icons/check2.svg" alt="delete"></button>                       
-                                <button class = "but-hov status-down" onclick = "statusDown(${i})"><img id = "status-down-${i}" src="/icons/Cancel.svg" alt="delete"></button>
+                                <button class = "but-hov status-up but-up-${item.status}" onclick = "statusUp(${i})"><img id = "status-up-${i}" src="/icons/check2.svg" alt="delete"></button>                       
+                                <button class = "but-hov status-down but-down-${item.status}" onclick = "statusDown(${i})"><img id = "status-down-${i}" src="/icons/Cancel.svg" alt="delete"></button>
                             </div>
                         </div>
                         <p class = "date-text">${item['showdate']}</p>
@@ -90,7 +92,6 @@ function showTasks(List) {
                     </div>
                 </div>`;
         taskListingBlock.innerHTML = showTask;
-        
     });
 }
 
@@ -225,10 +226,32 @@ searchText.addEventListener('input', function() {
     if (this.value.length > 2) {
         console.log(searchTextLength);
         let searchedTasks = filterTasksList.filter((item) => item.text.substr(0, searchTextLength) == this.value);
-        
         showTasks(searchedTasks);
     } else {
         showTasks(filterTasksList);
     }     
 })
+
+//Редактирование текста
+function stateChange(index) {
+    tasksList[index].state = 'redacted'
     
+    showTasks(tasksList);
+    localStorage.setItem('taskListingBlock', JSON.stringify(tasksList));
+}
+
+function textChange(index) {
+    document.querySelector(`#task-input-redact-${index}`).value = tasksList[index].text;
+    document.querySelector(`#task-input-redact-${index}`).addEventListener('keydown', function(event) {
+        
+        if (event.keyCode == 13) {
+            //console.log(document.querySelector(`#task-input-redact-${index}`).value);
+            tasksList[index].text = this.value;
+            tasksList[index].state = 'normal';
+            //console.log(tasksList[index].state);
+            localStorage.setItem('taskListingBlock', JSON.stringify(tasksList));
+            showTasks(tasksList); 
+        }
+    });
+}
+
