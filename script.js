@@ -79,7 +79,7 @@ function showTasks(List) {
                     <div class = "task ${style} ${item.status}"> 
                         <div class = "task-text-wrapper" >
                             <p class = "task-text state-text-${item.state}  id = "text-task-${i}" onclick = "stateChange(${i})">${item.text}</p>
-                            <div class = "state-${item.state}"><input type="text" id="task-input-redact-${i}" name="name" class="text-input-redact" placeholder = "${tasksList[i].text}" onclick = "textChange(${i})"></div>
+                            <div class = "state-${item.state}"><input type="text" id="task-input-redact-${i}" name="name" class="text-input-redact" value = "${tasksList[i].text}" onclick = "textChange(${i})"></div>
                             <div class = "button-staus-task-wrapper">
                                 <button class = "but-hov status-up but-up-${item.status}" onclick = "statusUp(${i})"><img id = "status-up-${i}" src="/icons/check2.svg" alt="delete"></button>                       
                                 <button class = "but-hov status-down but-down-${item.status}" onclick = "statusDown(${i})"><img id = "status-down-${i}" src="/icons/Cancel.svg" alt="delete"></button>

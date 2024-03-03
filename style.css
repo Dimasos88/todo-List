@@ -33,7 +33,7 @@ main {
     /* border: 2px solid #44a5ff; */
     background-color: #0051ff41;
 }
-
+/* блок добавления заданий */
 .add-task-block {
     display: flex;
 }
@@ -109,9 +109,11 @@ main {
         color:rgb(193, 255, 198);
     }
 }
+
 .add-task-button:active {
     border: 2px solid rgb(255, 255, 255);
 }
+
 
 .add-task {
     color:rgb(255, 255, 255);
@@ -120,7 +122,7 @@ main {
 span {
     display: block;
 }
-
+/* блок фильтров и сортировок */
 .filter-task-block {
     display: flex;
     flex-direction: column;
@@ -174,6 +176,7 @@ span {
     
 }
 
+
 .real-checkbox-pr::before {
     content: 'приоритет' url('/icons/arrow-down-icon-v2.svg');
     display: flex;
@@ -199,6 +202,11 @@ span {
 .checkbox-wrapper {
     margin-left: -58px;
 }
+
+.custom-checkbox:focus::before {
+    outline: 5px solid rgb(255, 255, 255);
+}
+
 
 .filter-task-block-2 > div {
     display: flex;
